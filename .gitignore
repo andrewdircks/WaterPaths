@@ -36,4 +36,10 @@ cmake-build-debug/
 ContainerFiles/ssh
 id_rsa
 
+#
+# Documentation build
+#
+docs/build/
+docs/xml/
+
 
