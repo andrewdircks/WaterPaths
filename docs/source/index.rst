@@ -14,7 +14,15 @@ Apache
    :caption: API REFERENCE
    :maxdepth: 2
 
-   api/WaterSource.rst
+   api/SystemComponents
+   api/Simulation
+   api/Problem
+   api/Controls
+   api/DroughtMitigationInstruments
+   api/ContinuityModels
+   api/DataCollector
+   api/InputFileParser
+   api/Utils
 
 
 .. _WaterPaths: https://github.com/andrewdircks/WaterPaths
