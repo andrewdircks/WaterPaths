@@ -14,7 +14,7 @@ using namespace Constants;
 class Catchment {
 protected:
 /**
- * Make small changes
+ * Making small changes
  */
     vector<vector<double>> *streamflows_all = nullptr;
     vector<double> streamflows_realization;
