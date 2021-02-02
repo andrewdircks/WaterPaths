@@ -1,6 +1,7 @@
-//
-// Created by bernardo on 4/12/18.
-//
+/**
+ * @author Bernardo Trindade
+ * @date 04/12/2018
+ */
 
 #include "Bond.h"
 
@@ -10,8 +11,6 @@ Bond::Bond(const int id, const double cost_of_capital, const int n_payments,
         id(id), cost_of_capital(cost_of_capital), n_payments(n_payments),
         pay_on_weeks(pay_on_weeks), type(type) {
 
-    // If bond is to start being paid for at issuance, set repayment delay
-    // to 0. Otherwise it will be set at issuance.
     if (begin_repayment_at_issuance) {
         begin_repayment_after_n_years = 0;
     }
@@ -30,8 +29,6 @@ Bond::Bond(const int id, const double cost_of_capital, const int n_payments,
         pay_on_weeks(pay_on_weeks),
         coupon_rate(coupon_rate), type(type) {
 
-    // If bond is to start being paid for at issuance, set repayment delay
-    // to 0. Otherwise it will be set at issuance.
     if (begin_repayment_at_issuance) {
         begin_repayment_after_n_years = 0;
     }
@@ -48,14 +45,6 @@ Bond::Bond() : id(NON_INITIALIZED), n_payments(NON_INITIALIZED),
 
 Bond::~Bond() = default;
 
-/**
- * Only cost of capital RDM multiplier is applied here because in a joint
- * project, it is assumed any cost overruns would be split among the
- * utilities. Interest and bond term, on the other hand, are utility
- * dependent are set at issuance, in function issueBond.
- * @param r
- * @param rdm_factors
- */
 void Bond::setRealizationWaterSource(unsigned long r,
                                      vector<double> &rdm_factors) {
     cost_of_capital *= rdm_factors[0];
@@ -65,7 +54,6 @@ void Bond::issueBond(int week, int construction_time,
                      double bond_term_multiplier,
                      double bond_interest_rate_multiplier) {
 
-    // Set date to begin repayment
     if (begin_repayment_after_n_years == NON_INITIALIZED) {
         begin_repayment_after_n_years =
                 (int) (construction_time / WEEKS_IN_YEAR) + 1;
