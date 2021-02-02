@@ -26,21 +26,13 @@ Catchment::Catchment(vector<vector<double>> &streamflows_all, int series_length)
     }
 }
 
-/**
- * Copy constructor.
- * @param catchment
- */
 Catchment::Catchment(const Catchment &catchment) :
         streamflows_all(catchment.streamflows_all),
         streamflows_realization(catchment.streamflows_realization),
         series_length(catchment.series_length),
         parent(false) {}
 
-/**
- * Copy assignment operator.
- * @param catchment
- * @return
- */
+
 Catchment &Catchment::operator=(const Catchment &catchment) {
     streamflows_all = catchment.streamflows_all;
     series_length = catchment.series_length;
@@ -49,31 +41,18 @@ Catchment &Catchment::operator=(const Catchment &catchment) {
 
 Catchment::Catchment() = default;
 
-/**
- * Destructor.
- */
+
 Catchment::~Catchment() {
     streamflows_all = nullptr;
 }
 
-/**
- * Get streamflow for a given week. This function assures that the number of
- * past inflows used for ROF calculations are reserved in the beginning of
- * the time series for ROF calculations.
- * @param week
- * @return
- */
+
 double Catchment::getStreamflow(int week) const {
     int adjusted_week = week + delta_week;
     return streamflows_realization[adjusted_week];
 }
 
-/**
- * Get time series corresponding to realization index and eliminate reference to
- * comprehensive streamflow
- * data set.
- * @param r
- */
+
 void Catchment::setRealization(unsigned long r, const vector<double> &rdm_factors) {
     streamflows_realization = vector<double>(streamflows_all->at(r));
 }
