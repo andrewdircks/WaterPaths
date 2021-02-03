@@ -22,6 +22,7 @@ Bond::Bond(const int id, const double cost_of_capital, const int n_payments,
     }
 }
 
+
 Bond::Bond(const int id, const double cost_of_capital, const int n_payments,
            vector<int> pay_on_weeks, const double coupon_rate, const int type,
            bool begin_repayment_at_issuance) :
@@ -40,15 +41,19 @@ Bond::Bond(const int id, const double cost_of_capital, const int n_payments,
     }
 }
 
+
 Bond::Bond() : id(NON_INITIALIZED), n_payments(NON_INITIALIZED),
                cost_of_capital(NON_INITIALIZED), type(NON_INITIALIZED) {}
 
+
 Bond::~Bond() = default;
+
 
 void Bond::setRealizationWaterSource(unsigned long r,
                                      vector<double> &rdm_factors) {
     cost_of_capital *= rdm_factors[0];
 }
+
 
 void Bond::issueBond(int week, int construction_time,
                      double bond_term_multiplier,
@@ -65,21 +70,26 @@ void Bond::issueBond(int week, int construction_time,
     setIssued();
 }
 
+
 bool Bond::isIssued() const {
     return issued;
 }
+
 
 void Bond::setIssued() {
     Bond::issued = true;
 }
 
+
 double Bond::getCouponRate() const {
     return coupon_rate;
 }
 
+
 double Bond::getCostOfCapital() const {
     return cost_of_capital;
 }
+
 
 int Bond::getNPayments() const {
     return n_payments;

@@ -1,6 +1,9 @@
-//
-// Created by bernardo on 4/12/18.
-//
+/**
+ * The LevelDebtServiceBond sub-class for the Bond class.
+ * 
+ * @author Bernardo Trindade
+ * @date 04/12/2018
+ */
 
 #include <cmath>
 #include <algorithm>
@@ -13,16 +16,11 @@ LevelDebtServiceBond::LevelDebtServiceBond(const int id, const double cost_of_ca
         Bond(id, cost_of_capital, n_payments, pay_on_weeks, coupon_rate, LEVEL_DEBT_SERVICE, begin_repayment_at_issuance) {
 }
 
+
 LevelDebtServiceBond::~LevelDebtServiceBond() = default;
 
-/**
- * Calculates debt service payment for a give week.
- * @param week
- * @return
- */
+
 double LevelDebtServiceBond::getDebtService(int week) {
-    /// If there are still payments to be made, repayment has begun,
-    /// and this is a payment week, issue payment.
     if (n_payments_made < n_payments &&
             week > week_issued + begin_repayment_after_n_years
                                  * WEEKS_IN_YEAR - 1 &&
@@ -58,7 +56,6 @@ void LevelDebtServiceBond::issueBond(int week, int construction_time,
     Bond::issueBond(week, construction_time, bond_term_multiplier,
                     bond_interest_rate_multiplier);
 
-    /// Level debt service payment value
     level_debt_service_payment = cost_of_capital * (coupon_rate
             * pow(1. + coupon_rate, n_payments)) /
                                  (pow(1. + coupon_rate, n_payments) - 1.);

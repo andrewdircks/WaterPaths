@@ -1,4 +1,6 @@
 /**
+ * The base class for the Bond class.
+ * 
  * @author Bernardo Trindade
  * @date 04/12/2018
  */
@@ -49,6 +51,7 @@ protected:
     int n_payments;
 
 public:
+
     /**
      * Type of bond issued.
      */
@@ -108,7 +111,7 @@ public:
     Bond();
 
     /**
-     * Destructor.
+     * Bond destructor.
      */
     virtual ~Bond();
 
@@ -118,10 +121,15 @@ public:
     Bond(const Bond&) = default;
 
     /**
-     * Gets the debt service ratio for a given week.
+     * Calculates debt service payments for a given week.
+     * If there are still payments to be made, repayment has begun.
+     * If repayment has begun and the week is a payment week, issue bond.
+     * If repayment has begun and the week is the last payment week, 
+     * pay principal and last interest.
+     * 
      * @param week Week of bond issuance.
      * 
-     * @returns The debt service ratio.
+     * @returns Value of debt service payments for a given week.
      */
     virtual double getDebtService(int week) = 0;
 
@@ -131,7 +139,7 @@ public:
      * @param discount_rate Interest rate paid on the bond.
      * @param week Week of bond issuance.
      * 
-     * @returns The net present value of the bond at the date of issuance.
+     * @returns Net present value of the bond at the date of issuance.
      */
     virtual double getNetPresentValueAtIssuance(double discount_rate, int week) const = 0;
 
@@ -140,9 +148,9 @@ public:
      * 
      * @param week Week in the of bond issuance.
      * @param construction_time Duration of infrastructure construction.
-     * @param bond_term_multiplier The number of payments to be made as a function of 
+     * @param bond_term_multiplier Number of payments to be made as a function of 
      * the bond maturity date.
-     * @param bond_interest_rate_multiplier The coupon rate as a function of the interest
+     * @param bond_interest_rate_multiplier Coupon rate as a function of the interest
      * paid on the bond.
      */
     virtual void
@@ -175,21 +183,21 @@ public:
     /**
      * Gets the bond coupon rate.
      * 
-     * @returns The bond coupon rate.
+     * @returns Bond coupon rate.
      */
     double getCouponRate() const;
 
     /**
      * Gets the construction cost of capital for the bond.
      * 
-     * @returns The costruction cost of capital for the bond.
+     * @returns Costruction cost of capital for the bond.
      */
     double getCostOfCapital() const;
 
     /**
      * Gets the number of payments to be made to the bond.
      * 
-     * @returns The number of payments to be made to the bond.
+     * @returns Number of payments to be made to the bond.
      */
     int getNPayments() const;
 
